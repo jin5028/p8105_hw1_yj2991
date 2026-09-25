@@ -6,14 +6,14 @@ output: github_document
 ---
 
 # Problem 1
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 data("penguins", package = "palmerpenguins")
 ```
 
-## description of the penguins dataset
+## Description of the Penguins Dataset
 The `penguins` dataset contains data on penguins from the Palmer Archipelago.
-Important variables include `species`, which identifies the penguin species
+There are important variables include `species`, which identifies the penguin species
 (Adelie, Chinstrap, and Gentoo), `island`, which identifies the island
 (Biscoe, Dream, and Torgersen), `bill_length_mm` and `bill_depth_mm`, which
 measure bill dimensions, `flipper_length_mm`, which measures flipper length
@@ -23,8 +23,8 @@ The dataset contains `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`
 mm.
 
-## scatter plot for penguins
-```{r}
+## Scatter Plot for Penguins
+```{r, warning=FALSE}
 ggplot(
   penguins,
   aes(
@@ -47,7 +47,7 @@ ggsave(
 )
 ```
 # Problem 2
-```{r}
+```{r, warning=FALSE}
 library(tidyverse)
 
 set.seed(123)
@@ -65,21 +65,20 @@ mydataframe_df <- tibble(
     )
   )
 )
+```
 
-# Print the data frame
-mydataframe_df
-
-# Take the mean of each variable
+## Take the mean of each variable
+```{r, warning=FALSE}
 mean(pull(mydataframe_df, norm_samp))
 mean(pull(mydataframe_df, norm_samp_pos))
 mean(pull(mydataframe_df, character_var))
 mean(pull(mydataframe_df, factor_var))
+```
 
-# Convert logical, character, and factor variables to numeric
-# (Show this code chunk, but do not show the output)
+```{r, warning=FALSE, results='hide'}
 as.numeric(pull(mydataframe_df, norm_samp_pos))
-as.numeric(pull(mydataframey_df, character_var))
+as.numeric(pull(mydataframe_df, character_var))
 as.numeric(pull(mydataframe_df, factor_var))
 ```
 
-The mean works for the numeric and logical variables, but it does not work for the character and factor variables. R treats TRUE as 1 and FALSE as 0, so the mean of the logical variable can be calculated. Converting the logical variable to numeric gives 1s and 0s. The character variable cannot be converted to numeric because it contains text, while the factor variable is converted to its internal level codes rather than meaningful numerical values. This explains why the mean does not work directly for the character and factor variables.
+The mean works for the numeric and logical variables, but it does not work for the character and factor variables. R treats TRUE as 1 and FALSE as 0, so the mean of the logical variable can be calculated. Converting the logical variable to numeric gives 1s and 0s. The character variable cannot be converted to numeric because it contains text and the factor variable is converted to its internal level codes rather than meaningful numerical values.
